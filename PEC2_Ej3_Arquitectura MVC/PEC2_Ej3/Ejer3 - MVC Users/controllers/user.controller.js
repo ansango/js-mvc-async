@@ -13,12 +13,26 @@ class UserController {
     this.view = view;
 
     // Explicit this binding
-    this.service.bindUserChanged(this.onUserChanged);
+    this.service.bindUserChanged(this.onChangedUsers);
     this.view.bindAddUser(this.handleAddUser);
     this.view.bindEditUser(this.handleEditUser);
     this.view.bindDeleteUser(this.handleDeleteUser);
 
     // Display initial todos
-    this.onChangedUser(this.service.users);
+    this.onChangedUsers(this.service.users);
   }
+  onChangedUsers = (users) => {
+    this.view.displayUsers(users);
+  };
+  handleAddUser = (user) => {
+    this.service.addUser(user);
+  };
+
+  handleDeleteUser = (id) => {
+    this.service.deleteUser(id);
+  };
+
+  handleEditUser = (user) => {
+    console.log(user);
+  };
 }
